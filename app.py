@@ -1,8 +1,10 @@
 from flask import Flask, Response, jsonify
+from flask_cors import CORS
 import requests
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/substack', methods=['GET'])
 

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 import feedparser
 import requests
+import os
 
 app = Flask(__name__)
 @app.route("/api/substack")
@@ -33,4 +34,5 @@ def getSubstackFeed():
         return jsonify({"Error": "Internal server error", "details":str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    PORT = int(os.environ.get("PORT", 5000)) # deafult to 5000 for local dev
+    app.run(host="0.0.0.0", port=PORT, debug=False)
